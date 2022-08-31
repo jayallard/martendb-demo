@@ -1,0 +1,109 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/jaya/personal/projects/MartenDbDemo/Demo.Tests/Demo.Tests.csproj": {}
+  },
+  "projects": {
+    "/home/jaya/personal/projects/MartenDbDemo/Demo.Tests/Demo.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/jaya/personal/projects/MartenDbDemo/Demo.Tests/Demo.Tests.csproj",
+        "projectName": "Demo.Tests",
+        "projectPath": "/home/jaya/personal/projects/MartenDbDemo/Demo.Tests/Demo.Tests.csproj",
+        "packagesPath": "/home/jaya/.nuget/packages/",
+        "outputPath": "/home/jaya/personal/projects/MartenDbDemo/Demo.Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/jaya/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "/home/jaya/projects/.dev-nuget": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/e-buildernoc/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.7.0, )"
+            },
+            "Marten": {
+              "target": "Package",
+              "version": "[5.9.0, )"
+            },
+            "Microsoft.Extensions.Hosting": {
+              "target": "Package",
+              "version": "[6.0.1, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[17.3.1, )"
+            },
+            "Xunit.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.5.0, )"
+            },
+            "Xunit.DependencyInjection.Demystifier": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "Xunit.DependencyInjection.Logging": {
+              "target": "Package",
+              "version": "[8.0.1, )"
+            },
+            "coverlet.collector": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.2, )"
+            },
+            "xunit.runner.visualstudio": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.4.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

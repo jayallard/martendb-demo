@@ -1,0 +1,73 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/jaya/personal/projects/MartenDbDemo/Demo.Application/Demo.Application.csproj": {}
+  },
+  "projects": {
+    "/home/jaya/personal/projects/MartenDbDemo/Demo.Application/Demo.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/jaya/personal/projects/MartenDbDemo/Demo.Application/Demo.Application.csproj",
+        "projectName": "Demo.Application",
+        "projectPath": "/home/jaya/personal/projects/MartenDbDemo/Demo.Application/Demo.Application.csproj",
+        "packagesPath": "/home/jaya/.nuget/packages/",
+        "outputPath": "/home/jaya/personal/projects/MartenDbDemo/Demo.Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/jaya/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "/home/jaya/projects/.dev-nuget": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.pkg.github.com/e-buildernoc/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "FluentAssertions": {
+              "target": "Package",
+              "version": "[6.7.0, )"
+            },
+            "MediatR": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
