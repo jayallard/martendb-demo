@@ -27,7 +27,9 @@ public class Startup
                 options.Connection(context.Configuration.GetSection("MartenDb:ConnectionString").Value);
                 options.AutoCreateSchemaObjects = AutoCreate.All;
                 options.Projections.Add<PersonProjectionAggregation>(ProjectionLifecycle.Inline);
-                options.Projections.Add<PersonTableProjectAggregation>(ProjectionLifecycle.Inline);
+                
+                // not working yet
+                //options.Projections.Add<PersonTableProjectAggregation>(ProjectionLifecycle.Inline);
             })
             .InitializeWith();
     }
