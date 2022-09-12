@@ -6,6 +6,7 @@ namespace Demo.Tests;
 
 public class UnitTest1
 {
+    private readonly Random _random = new();
     private readonly ISessionFactory _sessionFactory;
     private readonly ITestOutputHelper _testOutputHelper;
 
@@ -16,6 +17,27 @@ public class UnitTest1
     }
 
     [Fact]
+    public async Task DeleteStream()
+    {
+        var events = Enumerable.Range(0, 50_000)
+            .Select(r =>
+            {
+                var i = _random.Next(0, 100);
+                return new DeleteTest(r, i.ToString());
+            })
+            .ToArray<object>();
+
+        var streamId = Guid.NewGuid();
+        _testOutputHelper.WriteLine(streamId.ToString());
+        // ReSharper disable once ConvertToUsingDeclaration
+        await using (var get = _sessionFactory.OpenSession())
+        {
+            get.Events.StartStream<DeleteTest>(streamId, events);
+            await get.SaveChangesAsync();
+        }
+    }
+
+    [Fact]
     public async Task Test1()
     {
         // create and save a person
@@ -23,7 +45,7 @@ public class UnitTest1
         santa.SetBirthday(new DateTime(1993, 12, 25));
         santa.GotMarried(new DateTime(2020, 12, 24), "Gertrude Claus");
 
-        await using var create = _sessionFactory.OpenSession();
+        await using (var create = _sessionFactory.OpenSession())
         {
             create.Events.StartStream<PersonAggregate>(santa.PersonId, santa.Events);
             await create.SaveChangesAsync();
@@ -41,6 +63,8 @@ public class UnitTest1
         }
     }
 }
+
+public record DeleteTest(int Number, string Name);
 
 public record Marriage(DateTime Date, string SpouseName);
 
