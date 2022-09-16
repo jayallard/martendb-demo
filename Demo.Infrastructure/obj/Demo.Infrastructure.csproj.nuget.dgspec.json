@@ -1,26 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "/home/jaya/personal/projects/MartenDbDemo/Demo.Infrastructure/Demo.Infrastructure.csproj": {}
+    "/Users/jallard/personal/projects/martendb-demo/Demo.Infrastructure/Demo.Infrastructure.csproj": {}
   },
   "projects": {
-    "/home/jaya/personal/projects/MartenDbDemo/Demo.Infrastructure/Demo.Infrastructure.csproj": {
+    "/Users/jallard/personal/projects/martendb-demo/Demo.Infrastructure/Demo.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/jaya/personal/projects/MartenDbDemo/Demo.Infrastructure/Demo.Infrastructure.csproj",
+        "projectUniqueName": "/Users/jallard/personal/projects/martendb-demo/Demo.Infrastructure/Demo.Infrastructure.csproj",
         "projectName": "Demo.Infrastructure",
-        "projectPath": "/home/jaya/personal/projects/MartenDbDemo/Demo.Infrastructure/Demo.Infrastructure.csproj",
-        "packagesPath": "/home/jaya/.nuget/packages/",
-        "outputPath": "/home/jaya/personal/projects/MartenDbDemo/Demo.Infrastructure/obj/",
+        "projectPath": "/Users/jallard/personal/projects/martendb-demo/Demo.Infrastructure/Demo.Infrastructure.csproj",
+        "packagesPath": "/Users/jallard/.nuget/packages/",
+        "outputPath": "/Users/jallard/personal/projects/martendb-demo/Demo.Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/jaya/.nuget/NuGet/NuGet.Config"
+          "/Users/jallard/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
-          "/home/jaya/projects/.dev-nuget": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://nuget.pkg.github.com/e-buildernoc/index.json": {}
         },
@@ -42,7 +41,7 @@
           "dependencies": {
             "Marten": {
               "target": "Package",
-              "version": "[5.9.0, )"
+              "version": "[5.10.1, )"
             }
           },
           "imports": [
@@ -51,8 +50,7 @@
             "net47",
             "net471",
             "net472",
-            "net48",
-            "net481"
+            "net48"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -61,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "hB47zF46vTcxmBsb57hBC4iWuPwbUDffwjFd3z+z2nM2+7PJKxKcl96Kytr3h8d2GEhNW3P+Xz53VJgK3aLnOA==",
+  "dgSpecHash": "U6zDWfF67w0FZFBME8Eh84R8U0nkmDxZlb3QYkvXXJtFHx3HxXIWDt+Sq0YQfoAHynOmULS0QKBOn4pR/X+edw==",
   "success": true,
-  "projectFilePath": "/home/jaya/personal/projects/MartenDbDemo/Demo.Domain/Demo.Domain.csproj",
+  "projectFilePath": "/Users/jallard/personal/projects/martendb-demo/Demo.Domain/Demo.Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

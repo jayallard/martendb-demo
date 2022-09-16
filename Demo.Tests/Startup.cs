@@ -29,7 +29,7 @@ public class Startup
                 options.Projections.Add<PersonProjectionAggregation>(ProjectionLifecycle.Inline);
                 
                 // not working yet
-                //options.Projections.Add<PersonTableProjectAggregation>(ProjectionLifecycle.Inline);
+                options.Projections.Add<PersonTableProjectAggregation>(ProjectionLifecycle.Inline);
             })
             .InitializeWith();
     }

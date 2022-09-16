@@ -9,7 +9,7 @@
       "Demo.Tests/1.0.0": {
         "dependencies": {
           "FluentAssertions": "6.7.0",
-          "Marten": "5.9.0",
+          "Marten": "5.10.1",
           "Microsoft.Extensions.Hosting": "6.0.1",
           "Microsoft.NET.Test.Sdk": "17.3.1",
           "Xunit.DependencyInjection": "8.5.0",
@@ -110,7 +110,7 @@
           }
         }
       },
-      "Marten/5.9.0": {
+      "Marten/5.10.1": {
         "dependencies": {
           "BaselineTypeDiscovery": "1.1.3",
           "FastExpressionCompiler.Internal.src": "3.2.2",
@@ -128,8 +128,8 @@
         },
         "runtime": {
           "lib/net6.0/Marten.dll": {
-            "assemblyVersion": "5.9.0.0",
-            "fileVersion": "5.9.0.0"
+            "assemblyVersion": "5.10.1.0",
+            "fileVersion": "5.10.1.0"
           }
         }
       },
@@ -2310,12 +2310,12 @@
       "path": "lamarcompiler/6.1.4",
       "hashPath": "lamarcompiler.6.1.4.nupkg.sha512"
     },
-    "Marten/5.9.0": {
+    "Marten/5.10.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Ql2kkcccfNOW2UUCeH6xTqR/iYJcAOUDXqhgxrbVBXDB3aElk18adGkv6/DQ5jVuX3JCU/dsvNnaA8Oy71Nn5A==",
-      "path": "marten/5.9.0",
-      "hashPath": "marten.5.9.0.nupkg.sha512"
+      "sha512": "sha512-5KfdIfz+KQkA5AH0lnrjbs8FewLi0zHVaFtu9fvpvj1qHQoWIhE7/oEIQ/EyqKCVqLMQhi/IUT9iYiJIuYkuHg==",
+      "path": "marten/5.10.1",
+      "hashPath": "marten.5.10.1.nupkg.sha512"
     },
     "Microsoft.Bcl.AsyncInterfaces/5.0.0": {
       "type": "package",

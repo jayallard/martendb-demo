@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Demo.Tests.Model;
 using Marten;
 using Xunit.Abstractions;
@@ -38,29 +39,47 @@ public class UnitTest1
     }
 
     [Fact]
-    public async Task Test1()
+    public async Task PerfSingle()
     {
-        // create and save a person
-        var santa = new PersonAggregate("Santa", "Claus");
-        santa.SetBirthday(new DateTime(1993, 12, 25));
-        santa.GotMarried(new DateTime(2020, 12, 24), "Gertrude Claus");
-
-        await using (var create = _sessionFactory.OpenSession())
+        var watch = Stopwatch.StartNew();
+        for (var i = 0; i < 1_000; i++)
         {
+            // the first iteration is slow, so ignore it
+            if (i == 1) watch.Restart();
+            
+            // create and save a person
+            var santa = new PersonAggregate("Santa", "Claus");
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.GotMarried(new DateTime(2020, 12, 24), "Gertrude Claus");
+
+            await using var create = _sessionFactory.OpenSession();
             create.Events.StartStream<PersonAggregate>(santa.PersonId, santa.Events);
             await create.SaveChangesAsync();
         }
+        
+        _testOutputHelper.WriteLine(watch.ElapsedMilliseconds.ToString());
+    }
 
-        // ReSharper disable once ConvertToUsingDeclaration
-        // get the events
-        await using (var get = _sessionFactory.QuerySession())
-        {
-            var events = await get.Events.FetchStreamAsync(santa.PersonId);
-            foreach (var evt in events)
+    [Fact]
+    public async Task PerfParallel()
+    {
+        //for (var i = 0; i < 10_000; i++)
+        var tasks = Enumerable
+            .Range(0, 90)
+            .Select(async i =>
             {
-                _testOutputHelper.WriteLine(evt.EventTypeName);
-            }
-        }
+                var santa = new PersonAggregate("Santa", "Claus");
+                santa.SetBirthday(new DateTime(1993, 12, 25));
+                santa.GotMarried(new DateTime(2020, 12, 24), "Gertrude Claus");
+
+                await using (var create = _sessionFactory.OpenSession())
+                {
+                    create.Events.StartStream<PersonAggregate>(santa.PersonId, santa.Events);
+                    await create.SaveChangesAsync();
+                }
+            });
+
+        await Task.WhenAll(tasks);
     }
 }
 
@@ -73,6 +92,9 @@ public interface IEvent
 }
 
 public record PersonCreatedEvent(Guid PersonId, string FirstName, string LastName) : IEvent;
+
 public record BirthdaySetEvent(Guid PersonId, DateTime Birthday) : IEvent;
+
 public record GotMarriedEvent(Guid PersonId, DateTime MarriedDate, string SpouseName) : IEvent;
-public record GotDivorcedEvent(Guid PersonId): IEvent;
+
+public record GotDivorcedEvent(Guid PersonId) : IEvent;

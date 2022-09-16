@@ -1,15 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "El5TeviIlGx+FRZm0RuOcLQhhyhFNc0yW5WWziUWMMnvcuuYCniigk0k29UAI15x6D8+/9zofJnaHZv/GwNyIQ==",
+  "dgSpecHash": "ogXf45uolHvqkBEmzc13XTtokRhaIO/9oOUbSH1rS8Q+NIXgQ0pO4okziYsWT10HGYAxJR4o4CV5XJz3TZp7kw==",
   "success": true,
-  "projectFilePath": "/home/jaya/personal/projects/MartenDbDemo/Demo.WebApi/Demo.WebApi.csproj",
+  "projectFilePath": "/Users/jallard/personal/projects/martendb-demo/Demo.WebApi/Demo.WebApi.csproj",
   "expectedPackageFiles": [
-    "/home/jaya/.nuget/packages/microsoft.extensions.apidescription.server/3.0.0/microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
-    "/home/jaya/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
-    "/home/jaya/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
-    "/home/jaya/.nuget/packages/swashbuckle.aspnetcore.swagger/6.2.3/swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
-    "/home/jaya/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.2.3/swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
-    "/home/jaya/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.2.3/swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+    "/Users/jallard/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/jallard/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
+    "/Users/jallard/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
+    "/Users/jallard/.nuget/packages/swashbuckle.aspnetcore.swagger/6.4.0/swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
+    "/Users/jallard/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.4.0/swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",
+    "/Users/jallard/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.4.0/swashbuckle.aspnetcore.swaggerui.6.4.0.nupkg.sha512"
   ],
   "logs": []
 }
