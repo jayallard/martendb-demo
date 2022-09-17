@@ -1,5 +1,8 @@
 using System.Diagnostics;
 using Demo.Tests.Model;
+using FluentAssertions;
+using FluentAssertions.Execution;
+using FluentAssertions.Specialized;
 using Marten;
 using Xunit.Abstractions;
 
@@ -42,7 +45,7 @@ public class UnitTest1
     public async Task PerfSingle()
     {
         var watch = Stopwatch.StartNew();
-        for (var i = 0; i < 1_000; i++)
+        for (var i = 0; i < 1; i++)
         {
             // the first iteration is slow, so ignore it
             if (i == 1) watch.Restart();
@@ -52,9 +55,25 @@ public class UnitTest1
             santa.SetBirthday(new DateTime(1993, 12, 25));
             santa.GotMarried(new DateTime(2020, 12, 24), "Gertrude Claus");
 
-            await using var create = _sessionFactory.OpenSession();
-            create.Events.StartStream<PersonAggregate>(santa.PersonId, santa.Events);
-            await create.SaveChangesAsync();
+            await using (var create = _sessionFactory.OpenSession())
+            {
+                create.Events.StartStream<PersonAggregate>(santa.Id, santa.Events);
+                await create.SaveChangesAsync();
+            }
+
+            await using (var reader = _sessionFactory.QuerySession())
+            {
+                var x = await reader.Events.AggregateStreamAsync<PersonAggregate>(santa.Id);
+                _testOutputHelper.WriteLine("");
+
+                using var _ = new AssertionScope();
+                x!.FirstName.Should().Be("Santa");
+                x.LastName.Should().Be("Claus");
+                x.Marriage!.SpouseName.Should().Be("Gertrude Claus");
+                x.Marriage.Date.Should().Be(new DateTime(2020, 12, 24));
+
+
+            }
         }
         
         _testOutputHelper.WriteLine(watch.ElapsedMilliseconds.ToString());
@@ -74,9 +93,11 @@ public class UnitTest1
 
                 await using (var create = _sessionFactory.OpenSession())
                 {
-                    create.Events.StartStream<PersonAggregate>(santa.PersonId, santa.Events);
+                    create.Events.StartStream<PersonAggregate>(santa.Id, santa.Events);
                     await create.SaveChangesAsync();
                 }
+
+
             });
 
         await Task.WhenAll(tasks);

@@ -1,30 +1,43 @@
 namespace Demo.Tests.Model;
 
-public class PersonAggregate
+public abstract class AggregateBase
 {
-    // NOTE: this is a quickie.
-    // usually, the methods perform validations and create the event ONLY. Then, an event handler
-    // method (such as Apply) makes the actual change. That'll be important when events are
-    // loaded back into an aggregate - coming soon
-    // also not shown: domain services
     
-    private readonly List<IEvent> _events = new();
-    public IReadOnlyList<IEvent> Events => _events.AsReadOnly();
-    
+    public IReadOnlyList<object> Events => _uncommittedEvents.AsReadOnly();
+
+    private readonly List<object> _uncommittedEvents = new();
+    public IEnumerable<object> UncommittedEvents => new List<object>(_uncommittedEvents);
+
+    public void ClearUncommittedEvents() => _uncommittedEvents.Clear();
+
+    protected void AddUncommittedEvent(object obj) => _uncommittedEvents.Add(obj);
+}
+
+public class PersonAggregate : AggregateBase
+{
+    private PersonAggregate(){}
     public Marriage? Marriage { get; private set; }
-    public Guid PersonId { get; } = Guid.NewGuid();
+    
+    public Guid Id { get; private set; }
     public DateTime? Birthday { get; private set; }
+    
+    public string FirstName { get; private set; }
+    public string LastName { get; private set; }
 
     public PersonAggregate(string firstName, string lastName)
     {
-        _events.Add(new PersonCreatedEvent(PersonId, "Santa", "Claus"));
+        var evt = new PersonCreatedEvent(Guid.NewGuid(), firstName, lastName);
+        Apply(evt);
+        AddUncommittedEvent(evt);
     }
 
     public PersonAggregate SetBirthday(DateTime birthday)
     {
         if (birthday > DateTime.Now) throw new InvalidOperationException("Invalid birthday.");
-        Birthday = birthday;
-        _events.Add(new BirthdaySetEvent(PersonId, birthday));
+
+        var evt = new BirthdaySetEvent(Id, birthday);
+        Apply(evt);
+        AddUncommittedEvent(evt);
         return this;
     }
 
@@ -32,16 +45,33 @@ public class PersonAggregate
     {
         if (Marriage != null) throw new InvalidOperationException("already married");
         if (marriedDate > DateTime.Now) throw new InvalidOperationException("invalid marriage date");
-        Marriage = new Marriage(marriedDate, spouseName);
-        _events.Add(new GotMarriedEvent(PersonId, marriedDate, spouseName));
+        var evt = new GotMarriedEvent(Id, marriedDate, spouseName);
+        Apply(evt);
+        AddUncommittedEvent(evt);
         return this;
     }
 
     public PersonAggregate GotDivorced()
     {
         if (Marriage == null) throw new InvalidOperationException("not married");
-        Marriage = null;
-        _events.Add(new GotDivorcedEvent(PersonId));
+        var evt = new GotDivorcedEvent(Id);
+        Apply(evt);
+        AddUncommittedEvent(evt);
         return this;
+    }
+
+    private void Apply(BirthdaySetEvent evt) => Birthday = evt.Birthday;
+
+    private void Apply(GotMarriedEvent evt) =>
+        Marriage = new Marriage(evt.MarriedDate, evt.SpouseName);
+
+    private void Apply(GotDivorcedEvent evt) =>
+        Marriage = null;
+
+    private void Apply(PersonCreatedEvent evt)
+    {
+        Id = evt.PersonId;
+        FirstName = evt.FirstName;
+        LastName = evt.LastName;
     }
 }
