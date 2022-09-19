@@ -14,18 +14,22 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMarten(options =>
     {
-        options.Connection(builder.Configuration.GetSection("MartenDb:ConnectionString").Value);
+        // options.Connection(builder.Configuration.GetSection("MartenDb:ConnectionString").Value);
         options.Projections.Add<PersonProjectionAggregation>(Async);
         options.Projections.Add<PersonTableProjectAggregation>(Async);
+        options.MultiTenantedDatabases(x =>
+        {
+            x.AddSingleTenantDatabase(builder.Configuration.GetSection("MartenDb:ConnectionString-1").Value,
+                "tenant-1");
+            x.AddSingleTenantDatabase(builder.Configuration.GetSection("MartenDb:ConnectionString-2").Value,
+                "tenant-2");
+        });
     })
     .AddAsyncDaemon(HotCold);
 
 
 builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
-    });
+    .AddJsonOptions(options => { options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
 
 var app = builder.Build();
 

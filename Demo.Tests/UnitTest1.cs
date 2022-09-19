@@ -11,10 +11,10 @@ namespace Demo.Tests;
 public class UnitTest1
 {
     private readonly Random _random = new();
-    private readonly ISessionFactory _sessionFactory;
+    private readonly IDocumentStore _sessionFactory;
     private readonly ITestOutputHelper _testOutputHelper;
 
-    public UnitTest1(ISessionFactory sessionFactory, ITestOutputHelper testOutputHelper)
+    public UnitTest1(IDocumentStore sessionFactory, ITestOutputHelper testOutputHelper)
     {
         _sessionFactory = sessionFactory;
         _testOutputHelper = testOutputHelper;
@@ -45,8 +45,11 @@ public class UnitTest1
     public async Task PerfSingle()
     {
         var watch = Stopwatch.StartNew();
+        var tenant = "tenant-2";
         for (var i = 0; i < 10_000; i++)
         {
+            tenant = tenant == "tenant-2" ? "tenant-1" : "tenant-2";
+            
             // the first iteration is slow, so ignore it
             if (i == 1) watch.Restart();
             
@@ -55,13 +58,13 @@ public class UnitTest1
             santa.SetBirthday(new DateTime(1993, 12, 25));
             santa.GotMarried(new DateTime(2020, 12, 24), "Gertrude Claus");
 
-            await using (var create = _sessionFactory.OpenSession())
+            await using (var create = _sessionFactory.OpenSession(tenant))
             {
                 create.Events.StartStream<PersonAggregate>(santa.Id, santa.Events);
                 await create.SaveChangesAsync();
             }
 
-            await using (var reader = _sessionFactory.QuerySession())
+            await using (var reader = _sessionFactory.QuerySession(tenant))
             {
                 var x = await reader.Events.AggregateStreamAsync<PersonAggregate>(santa.Id);
                 _testOutputHelper.WriteLine("");

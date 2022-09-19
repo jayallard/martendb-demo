@@ -22,8 +22,13 @@ public class Startup
     {
         services.AddMarten(options =>
             {
-                options.Connection(context.Configuration.GetSection("MartenDb:ConnectionString").Value);
+                // options.Connection(context.Configuration.GetSection("MartenDb:ConnectionString").Value);
                 options.AutoCreateSchemaObjects = AutoCreate.All;
+                options.MultiTenantedDatabases(x =>
+                {
+                    x.AddSingleTenantDatabase(context.Configuration.GetSection("MartenDb:ConnectionString-1").Value, "tenant-1");
+                    x.AddSingleTenantDatabase(context.Configuration.GetSection("MartenDb:ConnectionString-2").Value, "tenant-2");
+                });
             })
             .InitializeWith();
     }
