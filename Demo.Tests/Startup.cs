@@ -1,6 +1,4 @@
-using Demo.Tests.Projections;
 using Marten;
-using Marten.Events.Projections;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -15,7 +13,7 @@ public class Startup
         hostBuilder.ConfigureAppConfiguration(b =>
         {
             b
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings.Development.json")
                 .AddEnvironmentVariables();
         });
     }
@@ -26,10 +24,6 @@ public class Startup
             {
                 options.Connection(context.Configuration.GetSection("MartenDb:ConnectionString").Value);
                 options.AutoCreateSchemaObjects = AutoCreate.All;
-                options.Projections.Add<PersonProjectionAggregation>(ProjectionLifecycle.Inline);
-                
-                // not working yet
-                options.Projections.Add<PersonTableProjectAggregation>(ProjectionLifecycle.Inline);
             })
             .InitializeWith();
     }

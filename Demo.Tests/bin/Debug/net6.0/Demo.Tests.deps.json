@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "Demo.Tests/1.0.0": {
         "dependencies": {
+          "DomainModel": "1.0.0",
           "FluentAssertions": "6.7.0",
           "Marten": "5.10.1",
           "Microsoft.Extensions.Hosting": "6.0.1",
@@ -2238,7 +2239,12 @@
           }
         }
       },
-      "xunit.runner.visualstudio/2.4.5": {}
+      "xunit.runner.visualstudio/2.4.5": {},
+      "DomainModel/1.0.0": {
+        "runtime": {
+          "DomainModel.dll": {}
+        }
+      }
     }
   },
   "libraries": {
@@ -3401,6 +3407,11 @@
       "sha512": "sha512-OwHamvBdUKgqsXfBzWiCW/O98BTx81UKzx2bieIOQI7CZFE5NEQZGi8PBQGIKawDW96xeRffiNf20SjfC0x9hw==",
       "path": "xunit.runner.visualstudio/2.4.5",
       "hashPath": "xunit.runner.visualstudio.2.4.5.nupkg.sha512"
+    },
+    "DomainModel/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

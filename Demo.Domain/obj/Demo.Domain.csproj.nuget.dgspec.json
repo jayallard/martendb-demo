@@ -1,25 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "/Users/jallard/personal/projects/martendb-demo/Demo.Domain/Demo.Domain.csproj": {}
+    "/home/jaya/personal/projects/MartenDbDemo/Demo.Domain/Demo.Domain.csproj": {}
   },
   "projects": {
-    "/Users/jallard/personal/projects/martendb-demo/Demo.Domain/Demo.Domain.csproj": {
+    "/home/jaya/personal/projects/MartenDbDemo/Demo.Domain/Demo.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/jallard/personal/projects/martendb-demo/Demo.Domain/Demo.Domain.csproj",
+        "projectUniqueName": "/home/jaya/personal/projects/MartenDbDemo/Demo.Domain/Demo.Domain.csproj",
         "projectName": "Demo.Domain",
-        "projectPath": "/Users/jallard/personal/projects/martendb-demo/Demo.Domain/Demo.Domain.csproj",
-        "packagesPath": "/Users/jallard/.nuget/packages/",
-        "outputPath": "/Users/jallard/personal/projects/martendb-demo/Demo.Domain/obj/",
+        "projectPath": "/home/jaya/personal/projects/MartenDbDemo/Demo.Domain/Demo.Domain.csproj",
+        "packagesPath": "/home/jaya/.nuget/packages/",
+        "outputPath": "/home/jaya/personal/projects/MartenDbDemo/Demo.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/jallard/.nuget/NuGet/NuGet.Config"
+          "/home/jaya/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
         "sources": {
+          "/home/jaya/projects/.dev-nuget": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://nuget.pkg.github.com/e-buildernoc/index.json": {}
         },
@@ -44,7 +45,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -53,7 +55,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.401/RuntimeIdentifierGraph.json"
         }
       }
     }

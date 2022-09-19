@@ -1,7 +1,8 @@
+using DomainModel;
 using Marten.Events.Aggregation;
 using Marten.Schema;
 
-namespace Demo.Tests.Projections;
+namespace ProjectionsWebApi.Projections;
 
 public class PersonProjectionAggregation : SingleStreamAggregation<PersonProjection>
 {

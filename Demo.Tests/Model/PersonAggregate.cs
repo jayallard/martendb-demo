@@ -1,3 +1,5 @@
+using DomainModel;
+
 namespace Demo.Tests.Model;
 
 public abstract class AggregateBase
@@ -20,9 +22,9 @@ public class PersonAggregate : AggregateBase
     
     public Guid Id { get; private set; }
     public DateTime? Birthday { get; private set; }
-    
-    public string FirstName { get; private set; }
-    public string LastName { get; private set; }
+
+    public string FirstName { get; private set; } = null!;
+    public string LastName { get; private set; } = null!;
 
     public PersonAggregate(string firstName, string lastName)
     {

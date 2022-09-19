@@ -1,9 +1,10 @@
+using DomainModel;
 using Marten;
 using Marten.Events;
 using Marten.Events.Projections;
 using Weasel.Postgresql.Tables;
 
-namespace Demo.Tests.Projections;
+namespace ProjectionsWebApi.Projections;
 
 public class PersonTableProjectAggregation : EventProjection
 {

@@ -428,24 +428,25 @@
     ]
   },
   "packageFolders": {
-    "/Users/jallard/.nuget/packages/": {}
+    "/home/jaya/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/jallard/personal/projects/martendb-demo/Demo.WebApi/Demo.WebApi.csproj",
+      "projectUniqueName": "/home/jaya/personal/projects/MartenDbDemo/Demo.WebApi/Demo.WebApi.csproj",
       "projectName": "Demo.WebApi",
-      "projectPath": "/Users/jallard/personal/projects/martendb-demo/Demo.WebApi/Demo.WebApi.csproj",
-      "packagesPath": "/Users/jallard/.nuget/packages/",
-      "outputPath": "/Users/jallard/personal/projects/martendb-demo/Demo.WebApi/obj/",
+      "projectPath": "/home/jaya/personal/projects/MartenDbDemo/Demo.WebApi/Demo.WebApi.csproj",
+      "packagesPath": "/home/jaya/.nuget/packages/",
+      "outputPath": "/home/jaya/personal/projects/MartenDbDemo/Demo.WebApi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/jallard/.nuget/NuGet/NuGet.Config"
+        "/home/jaya/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "/home/jaya/projects/.dev-nuget": {},
         "https://api.nuget.org/v3/index.json": {},
         "https://nuget.pkg.github.com/e-buildernoc/index.json": {}
       },
@@ -476,7 +477,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -488,7 +490,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/6.0.100/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.401/RuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,8 +1,8 @@
 using System.Diagnostics;
 using Demo.Tests.Model;
+using DomainModel;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using FluentAssertions.Specialized;
 using Marten;
 using Xunit.Abstractions;
 
@@ -45,7 +45,7 @@ public class UnitTest1
     public async Task PerfSingle()
     {
         var watch = Stopwatch.StartNew();
-        for (var i = 0; i < 1; i++)
+        for (var i = 0; i < 10_000; i++)
         {
             // the first iteration is slow, so ignore it
             if (i == 1) watch.Restart();
@@ -71,8 +71,6 @@ public class UnitTest1
                 x.LastName.Should().Be("Claus");
                 x.Marriage!.SpouseName.Should().Be("Gertrude Claus");
                 x.Marriage.Date.Should().Be(new DateTime(2020, 12, 24));
-
-
             }
         }
         
@@ -103,19 +101,3 @@ public class UnitTest1
         await Task.WhenAll(tasks);
     }
 }
-
-public record DeleteTest(int Number, string Name);
-
-public record Marriage(DateTime Date, string SpouseName);
-
-public interface IEvent
-{
-}
-
-public record PersonCreatedEvent(Guid PersonId, string FirstName, string LastName) : IEvent;
-
-public record BirthdaySetEvent(Guid PersonId, DateTime Birthday) : IEvent;
-
-public record GotMarriedEvent(Guid PersonId, DateTime MarriedDate, string SpouseName) : IEvent;
-
-public record GotDivorcedEvent(Guid PersonId) : IEvent;
