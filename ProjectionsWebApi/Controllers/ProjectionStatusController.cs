@@ -1,5 +1,4 @@
 using Marten;
-using Marten.Events.Daemon;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ProjectionsWebApi.Controllers;

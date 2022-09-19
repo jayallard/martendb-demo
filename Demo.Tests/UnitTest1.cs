@@ -46,7 +46,8 @@ public class UnitTest1
     {
         var watch = Stopwatch.StartNew();
         var tenant = "tenant-2";
-        for (var i = 0; i < 10_000; i++)
+        const int count = 10_000;
+        for (var i = 0; i < count; i++)
         {
             tenant = tenant == "tenant-2" ? "tenant-1" : "tenant-2";
             
@@ -67,8 +68,6 @@ public class UnitTest1
             await using (var reader = _sessionFactory.QuerySession(tenant))
             {
                 var x = await reader.Events.AggregateStreamAsync<PersonAggregate>(santa.Id);
-                _testOutputHelper.WriteLine("");
-
                 using var _ = new AssertionScope();
                 x!.FirstName.Should().Be("Santa");
                 x.LastName.Should().Be("Claus");
@@ -77,7 +76,9 @@ public class UnitTest1
             }
         }
         
+        watch.Stop();
         _testOutputHelper.WriteLine(watch.ElapsedMilliseconds.ToString());
+        _testOutputHelper.WriteLine(count / watch.Elapsed.TotalSeconds + " per second");
     }
 
     [Fact]
