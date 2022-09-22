@@ -53,6 +53,29 @@ If all went well, the test passed.
 
 You can look at the postgresql database: `localhost:49095`, User=`postgres`, Password=`secret789@@`
 
+### PgAdmin
+
+The docker-compose includes the PGAdmin website, which is a postgres version of Microsoft SSMS.
+
+The credentials are to log into the application itself, not a database.
+
+- URL: `https://localhost:5050`
+- User: `user@awesome.com`
+- Password: `password`
+
+Once logged into the app, you can register the database in the other container.
+
+Database
+
+- Server Name: `mdb-postgres` (this is the container name, thus, it's name on the docker network)
+- User: `postgres`
+- Passsword: `secret789@@` - per the `.env` file
+- Port: `5432`
+
+TODO: Determine if the server creation can be automated so that we dont' have to do it manually every time we create a new container.
+
+NOTE: Any tool can be used. (I (Jay) use JetBrains DataGrip)
+
 ## CQRS Overview
 
 Command Query Responsibility Separation is based on the principle of WORM: Most applications are Write Once, Read Many.

@@ -70,7 +70,15 @@ services :
       POSTGRES_PASSWORD : ${POSTGRES_PASSWORD}
     ports: 
       - "${POSTGRES_HOST_PORT}:5432"
-
+  pgadmin:
+    container_name: mdb-postgres-admin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "${PGADMIN_USER}"
+      PGADMIN_DEFAULT_PASSWORD: "${PGADMIN_PASSWORD}"
+    ports:
+      - "5050:80"
 
 # change the network name so that it doesn't conflict with other projects,
 # or use an existing network accidentally.

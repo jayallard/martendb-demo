@@ -1,3 +1,5 @@
+using System;
+
 namespace DomainModel;
 
 public record DeleteTest(int Number, string Name);
