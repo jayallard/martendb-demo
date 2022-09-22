@@ -19,10 +19,10 @@ builder.Services.AddMarten(options =>
         options.Projections.Add<PersonTableProjectAggregation>(Async);
         options.MultiTenantedDatabases(x =>
         {
-            x.AddSingleTenantDatabase(builder.Configuration.GetSection("MartenDb:ConnectionString-1").Value,
-                "tenant-1");
             x.AddSingleTenantDatabase(builder.Configuration.GetSection("MartenDb:ConnectionString-2").Value,
                 "tenant-2");
+            x.AddSingleTenantDatabase(builder.Configuration.GetSection("MartenDb:ConnectionString-1").Value,
+                "tenant-1");
         });
     })
     .AddAsyncDaemon(HotCold);

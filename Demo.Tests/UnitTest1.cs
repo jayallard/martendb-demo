@@ -46,7 +46,7 @@ public class UnitTest1
     {
         var watch = Stopwatch.StartNew();
         var tenant = "tenant-2";
-        const int count = 10_000;
+        const int count = 2;
         for (var i = 0; i < count; i++)
         {
             tenant = tenant == "tenant-2" ? "tenant-1" : "tenant-2";
@@ -55,13 +55,16 @@ public class UnitTest1
             if (i == 1) watch.Restart();
             
             // create and save a person
-            var santa = new PersonAggregate("Santa", "Claus");
+            var santa = new PersonAggregate("Santa", "Claus" + DateTime.Now.Ticks);
             santa.SetBirthday(new DateTime(1993, 12, 25));
             santa.GotMarried(new DateTime(2020, 12, 24), "Gertrude Claus");
 
             await using (var create = _sessionFactory.OpenSession(tenant))
             {
                 create.Events.StartStream<PersonAggregate>(santa.Id, santa.Events);
+                
+                
+                
                 await create.SaveChangesAsync();
             }
 
@@ -70,7 +73,7 @@ public class UnitTest1
                 var x = await reader.Events.AggregateStreamAsync<PersonAggregate>(santa.Id);
                 using var _ = new AssertionScope();
                 x!.FirstName.Should().Be("Santa");
-                x.LastName.Should().Be("Claus");
+                x.LastName.Should().StartWith("Claus");
                 x.Marriage!.SpouseName.Should().Be("Gertrude Claus");
                 x.Marriage.Date.Should().Be(new DateTime(2020, 12, 24));
             }
@@ -93,13 +96,9 @@ public class UnitTest1
                 santa.SetBirthday(new DateTime(1993, 12, 25));
                 santa.GotMarried(new DateTime(2020, 12, 24), "Gertrude Claus");
 
-                await using (var create = _sessionFactory.OpenSession())
-                {
-                    create.Events.StartStream<PersonAggregate>(santa.Id, santa.Events);
-                    await create.SaveChangesAsync();
-                }
-
-
+                await using var create = _sessionFactory.OpenSession();
+                create.Events.StartStream<PersonAggregate>(santa.Id, santa.Events);
+                await create.SaveChangesAsync();
             });
 
         await Task.WhenAll(tasks);

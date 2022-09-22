@@ -47,6 +47,7 @@ public class PersonAggregate : AggregateBase
     {
         if (Marriage != null) throw new InvalidOperationException("already married");
         if (marriedDate > DateTime.Now) throw new InvalidOperationException("invalid marriage date");
+
         var evt = new GotMarriedEvent(Id, marriedDate, spouseName);
         Apply(evt);
         AddUncommittedEvent(evt);
