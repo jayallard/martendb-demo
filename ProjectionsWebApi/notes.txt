@@ -1,0 +1,14 @@
+2 databases
+
+25,0001 streams
+1,600,064 events per database
+
+2 projections - total build times 
+    1 - document
+        61 seconds
+        61 seconds
+    1 - regular table
+        21 seconds
+        44 seconds
+ 
+ 

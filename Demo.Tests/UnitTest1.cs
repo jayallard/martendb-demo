@@ -46,9 +46,13 @@ public class UnitTest1
     {
         var watch = Stopwatch.StartNew();
         var tenant = "tenant-2";
-        const int count = 2;
+        const int count = 50_000;
         for (var i = 0; i < count; i++)
         {
+            if (i / 1000 == 0)
+            {
+                _testOutputHelper.WriteLine(i.ToString());
+            }
             tenant = tenant == "tenant-2" ? "tenant-1" : "tenant-2";
             
             // the first iteration is slow, so ignore it
@@ -57,14 +61,72 @@ public class UnitTest1
             // create and save a person
             var santa = new PersonAggregate("Santa", "Claus" + DateTime.Now.Ticks);
             santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
+            santa.SetBirthday(new DateTime(1993, 12, 25));
             santa.GotMarried(new DateTime(2020, 12, 24), "Gertrude Claus");
 
             await using (var create = _sessionFactory.OpenSession(tenant))
             {
                 create.Events.StartStream<PersonAggregate>(santa.Id, santa.Events);
-                
-                
-                
                 await create.SaveChangesAsync();
             }
 
