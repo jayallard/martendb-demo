@@ -1,4 +1,3 @@
-using Baseline;
 using DomainModel;
 using Marten.Events.Aggregation;
 using Marten.Schema;

@@ -1,4 +1,5 @@
 using Marten;
+using Marten.Events.Projections;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,9 +27,13 @@ public class Startup
                 options.AutoCreateSchemaObjects = AutoCreate.All;
                 options.MultiTenantedDatabases(x =>
                 {
-                    x.AddSingleTenantDatabase(context.Configuration.GetSection("MartenDb:ConnectionString-1").Value, "tenant-1");
-                    x.AddSingleTenantDatabase(context.Configuration.GetSection("MartenDb:ConnectionString-2").Value, "tenant-2");
+                    x.AddSingleTenantDatabase(context.Configuration.GetSection("MartenDb:ConnectionString-1").Value,
+                        "tenant-1");
+                    x.AddSingleTenantDatabase(context.Configuration.GetSection("MartenDb:ConnectionString-2").Value,
+                        "tenant-2");
                 });
+
+                options.Projections.Add(new OtherDbProjection());
             })
             .InitializeWith();
     }

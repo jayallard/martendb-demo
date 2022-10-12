@@ -11,4 +11,11 @@
         21 seconds
         44 seconds
  
- 
+ 3 minutes 34 seconds
+    
+ parallelism
+    appears to do one tenant at a time
+    multiple shards, per tenant, at once
+
+
+docker run --detach --name some-mariadb --env MARIADB_USER=example-user --env MARIADB_PASSWORD=my_cool_secret -p "3306:3306" --env MARIADB_ROOT_PASSWORD=my-secret-pw  mariadb:latest

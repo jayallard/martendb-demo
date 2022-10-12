@@ -46,8 +46,8 @@ public class UnitTest1
     {
         var watch = Stopwatch.StartNew();
         var tenant = "tenant-2";
-        const int count = 50_000;
-        for (var i = 0; i < count; i++)
+        const int streamCount = 200;
+        for (var i = 0; i < streamCount; i++)
         {
             if (i / 1000 == 0)
             {
@@ -124,14 +124,14 @@ public class UnitTest1
             santa.SetBirthday(new DateTime(1993, 12, 25));
             santa.GotMarried(new DateTime(2020, 12, 24), "Gertrude Claus");
 
-            await using (var create = _sessionFactory.OpenSession(tenant))
             {
+                await using var create = _sessionFactory.OpenSession(tenant);
                 create.Events.StartStream<PersonAggregate>(santa.Id, santa.Events);
                 await create.SaveChangesAsync();
             }
 
-            await using (var reader = _sessionFactory.QuerySession(tenant))
             {
+                await using var reader = _sessionFactory.QuerySession(tenant);
                 var x = await reader.Events.AggregateStreamAsync<PersonAggregate>(santa.Id);
                 using var _ = new AssertionScope();
                 x!.FirstName.Should().Be("Santa");
@@ -143,7 +143,9 @@ public class UnitTest1
         
         watch.Stop();
         _testOutputHelper.WriteLine(watch.ElapsedMilliseconds.ToString());
-        _testOutputHelper.WriteLine(count / watch.Elapsed.TotalSeconds + " per second");
+        _testOutputHelper.WriteLine(streamCount / watch.Elapsed.TotalSeconds + " per second");
+
+        OtherDbProjection.StreamCount.Should().Be(streamCount);
     }
 
     [Fact]
