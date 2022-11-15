@@ -145,6 +145,7 @@ public class UnitTest1
         _testOutputHelper.WriteLine(watch.ElapsedMilliseconds.ToString());
         _testOutputHelper.WriteLine(streamCount / watch.Elapsed.TotalSeconds + " per second");
 
+        // wicked hack
         OtherDbProjection.StreamCount.Should().Be(streamCount);
     }
 

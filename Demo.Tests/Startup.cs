@@ -3,6 +3,7 @@ using Marten.Events.Projections;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ProjectionsWebApi.Projections;
 using Weasel.Core;
 
 namespace Demo.Tests;
@@ -33,7 +34,10 @@ public class Startup
                         "tenant-2");
                 });
 
-                options.Projections.Add(new OtherDbProjection());
+                // no di support - sad face
+                options.Projections.Add<PersonProjectionAggregation>(); // requires default constructor - not di
+                options.Projections.Add<OtherDbProjection>(); // only supports a particular base class...
+                options.Projections.Add(new OtherDbProjection()); // ...so must do this
             })
             .InitializeWith();
     }

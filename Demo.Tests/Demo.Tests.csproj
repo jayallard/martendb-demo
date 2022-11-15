@@ -35,6 +35,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\DomainModel\DomainModel.csproj" />
+      <ProjectReference Include="..\ProjectionsWebApi\ProjectionsWebApi.csproj" />
     </ItemGroup>
 
 </Project>
